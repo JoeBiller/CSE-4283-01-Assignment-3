@@ -1,0 +1,65 @@
+<!-- Matthew Lane (ml2162) - CSE 4283-01: Assignment 3 -->
+<html>
+<head>
+<title>BMI Calculator</title>
+<style>
+#number
+{
+    text-align: right; 
+}
+#unit
+{
+    padding-left: 2px;
+    padding-right: 4px;
+}
+#results
+{
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 2px;
+    text-align: center;
+}
+#error
+{
+    color: red;
+}
+</style>
+</head>
+<body>
+<h1>BMI Calculator</h1>
+{% if success %}
+<p>
+<table id="results">
+    <tr>
+        <th id="results" colspan="3">Units</th>
+    </tr>
+    <tr>
+        <td id="results">{{success["pounds"]}}<span id="unit">lbs</span></td>
+        <td id="results">{{success["feet"]}}<span id="unit">'</span></td>
+        <td id="results">{{success["inches"]}}<span id="unit">"</span></td>
+    </tr>
+    <tr>
+        <th id="results">BMI</th>
+        <td id="results" colspan="2">{{success["bmi_value"]}}</td>
+    </tr>
+    <tr>
+        <th id="results">BMI Category</th>
+        <td id="results" colspan="2">{{success["bmi_category"]}}</td>
+    </tr>
+</table>
+</p>
+{% endif %}
+{% if error_message %}
+<p id="error">{{error_message}}</p>
+{% endif %}
+<form action="/" method="post">
+    <label for="height">Enter your height:</label><br>
+    <input id="number" type="text" name="feet" value="5" size="1"><span id="unit">'</span>
+    <input id="number" type="text" name="inch" value="9" size="2"><span id="unit">"</span>
+    <br><br>
+    <label for="weight">Enter your weight:</label><br>
+    <input id="number" type="text" name="pounds" value="140" size="3"><span id="unit">lbs</span><br><br>
+    <input type="submit" value="Calculate">
+</form>
+</body>
+</html>
