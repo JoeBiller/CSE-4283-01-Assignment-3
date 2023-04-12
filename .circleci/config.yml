@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  unit-tests:
+    docker:
+      - image: cimg/python:3.11.0
+    steps:
+      - checkout
+      - run:
+          name: Create Python Virtual Environment
+          command: python3 -m venv venv/
+      - run:
+          name: Activate Python Virtual Environment
+          command: . venv/bin/activate
+      - run:
+          name: Install Python Dependencies
+          command: pip3 install --upgrade -r requirements.txt
+      - run:
+          name: Run Unit Testing
+          command: pytest
+
+workflows:
+  unit-tests-workflow:
+    jobs:
+      - unit-tests
