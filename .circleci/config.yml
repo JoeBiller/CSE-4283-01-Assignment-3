@@ -1,28 +1,29 @@
-version: '2.1'
-orbs:
-  coveralls: coveralls/coveralls@2.1.0
-  jobs:
-    unit-tests:
-      docker:
-        - image: cimg/python:3.11.0
-          steps:
-            - checkout
-        - run:
-            command: python3 -m venv venv/
-            name: Create Python Virtual Environment
-        - run:
-            command: . venv/bin/activate
-            name: Activate Python Virtual Environment
-        - run:
-            command: python3 -m pip install --upgrade -r requirements.txt
-            name: Install Python Dependencies
-        - run:
-            command: pytest
-            name: Run Unit Testing
-        - coveralls/upload
-    workflows:
-      unit-tests-workflow:
-        jobs:
-          - unit-tests
+version: 2.1
 
-workflows: null
+orbs:
+  coveralls: coveralls/coveralls@x.y.z
+
+jobs:
+  unit-tests:
+    docker:
+      - image: cimg/python:3.11.0
+    steps:
+      - checkout
+      - run:
+          name: Create Python Virtual Environment
+          command: python3 -m venv venv/
+      - run:
+          name: Activate Python Virtual Environment
+          command: . venv/bin/activate
+      - run:
+          name: Install Python Dependencies
+          command: pip3 install --upgrade -r requirements.txt
+      - run:
+          name: Run Unit Testing
+          command: pytest
+      - coveralls/upload
+
+workflows:
+  unit-tests-workflow:
+    jobs:
+      - unit-tests
