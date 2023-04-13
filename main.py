@@ -9,6 +9,8 @@ app = Flask(__name__)
 
 # This function will display the BMI calculation form
 # to users who visit the root path.
+
+
 @app.get("/")
 def show_bmi_form():
     return render_template("bmi_form.html")
@@ -16,6 +18,8 @@ def show_bmi_form():
 # This function will verify the user has provided all the
 # required measurements, perform a BMI calculation on those
 # measurements, then display it to the user.
+
+
 @app.post("/")
 def perform_bmi_calculation():
     # Verify feet were provided correctly

@@ -5,15 +5,17 @@
 # int above the provided floor.
 def verify_measurement(measurement, name, floor):
     try:
-        assert type(measurement) is str
+        assert isinstance(measurement, str)
         measurement = int(measurement)
         assert measurement >= floor
-    except:
+    except BaseException:
         return measurement, f"Please enter a valid number in {name} above {floor}."
     return measurement, None
 
 # This function will convert a height in inches and
 # weight in pounds into a BMI and BMI category.
+
+
 def calculate_bmi(inches, pounds):
     # Convert weight in pounds to kilograms
     kilograms = pounds * 0.45

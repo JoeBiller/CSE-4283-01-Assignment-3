@@ -2,4 +2,5 @@ flask
 pytest
 pytest-cov
 coveralls
+autopep8
 pip

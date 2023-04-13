@@ -6,6 +6,8 @@ from bmi import *
 from main import app
 
 # Here we will test if the main page loads correctly.
+
+
 def test_home_page():
     # Utilize Flask's built-in test client
     # for simulating browser requests.
@@ -17,6 +19,7 @@ def test_home_page():
     # Check if the title appears in the response
     assert "<title>BMI Calculator</title>".encode("UTF-8") in response.data
     assert response.status_code == 200
+
 
 def test_perform_bmi_calculation():
     # Utilize Flask's built-in test client
@@ -30,11 +33,16 @@ def test_perform_bmi_calculation():
         "pounds": "120"
     }
     response = client.post('/', data=test_data)
-    assert """<td id="results">120<span id="unit">lbs</span></td>""".encode("UTF-8") in response.data
-    assert """<td id="results">5<span id="unit">'</span></td>""".encode("UTF-8") in response.data
-    assert """<td id="results">3<span id="unit">"</span></td>""".encode("UTF-8") in response.data
-    assert """<td id="results" colspan="2">21.8</td>""".encode("UTF-8") in response.data
-    assert """<td id="results" colspan="2">Normal weight</td>""".encode("UTF-8") in response.data
+    assert """<td id="results">120<span id="unit">lbs</span></td>""".encode(
+        "UTF-8") in response.data
+    assert """<td id="results">5<span id="unit">'</span></td>""".encode(
+        "UTF-8") in response.data
+    assert """<td id="results">3<span id="unit">"</span></td>""".encode(
+        "UTF-8") in response.data
+    assert """<td id="results" colspan="2">21.8</td>""".encode(
+        "UTF-8") in response.data
+    assert """<td id="results" colspan="2">Normal weight</td>""".encode(
+        "UTF-8") in response.data
     assert response.status_code == 200
 
     # Test with data missing
@@ -48,7 +56,8 @@ def test_perform_bmi_calculation():
         "pounds": "120"
     }
     response = client.post('/', data=test_data)
-    assert """<p id="error">Please enter a valid number in feet above 0.</p>""".encode("UTF-8") in response.data
+    assert """<p id="error">Please enter a valid number in feet above 0.</p>""".encode(
+        "UTF-8") in response.data
     assert response.status_code == 200
 
     # Test with inches missing
@@ -58,7 +67,8 @@ def test_perform_bmi_calculation():
         "pounds": "120"
     }
     response = client.post('/', data=test_data)
-    assert """<p id="error">Please enter a valid number in inches above 0.</p>""".encode("UTF-8") in response.data
+    assert """<p id="error">Please enter a valid number in inches above 0.</p>""".encode(
+        "UTF-8") in response.data
     assert response.status_code == 200
 
     # Test with pounds missing
@@ -68,24 +78,33 @@ def test_perform_bmi_calculation():
         "pounds": ""
     }
     response = client.post('/', data=test_data)
-    assert """<p id="error">Please enter a valid number in pounds above 1.</p>""".encode("UTF-8") in response.data
+    assert """<p id="error">Please enter a valid number in pounds above 1.</p>""".encode(
+        "UTF-8") in response.data
     assert response.status_code == 200
 
 # Here we will test if the verify_measurement function
 # works as expected.
+
+
 def test_verify_measurement():
     # Test a scenario that should work
     assert verify_measurement("0", "test", 0) == (0, None)
     # Test str check
-    assert verify_measurement(1.5, "test", 0) == (1.5, "Please enter a valid number in test above 0.")
+    assert verify_measurement(1.5, "test", 0) == (
+        1.5, "Please enter a valid number in test above 0.")
     # Test int check
-    assert verify_measurement("not int", "test", 0) == ("not int", "Please enter a valid number in test above 0.")
-    assert verify_measurement("1.5", "test", 0) == ("1.5", "Please enter a valid number in test above 0.")
+    assert verify_measurement("not int", "test", 0) == (
+        "not int", "Please enter a valid number in test above 0.")
+    assert verify_measurement("1.5", "test", 0) == (
+        "1.5", "Please enter a valid number in test above 0.")
     # Test floor check
-    assert verify_measurement("0", "test", 1) == (0, "Please enter a valid number in test above 1.")
+    assert verify_measurement("0", "test", 1) == (
+        0, "Please enter a valid number in test above 1.")
 
 # Here we will test if calculate_bmi can correctly
 # calculate a BMI that is Underweight.
+
+
 def test_calculate_bmi_underweight():
     # For the given range (-infinity, 18.5), we calculate the
     # following Weak N x 1 points...
@@ -96,6 +115,8 @@ def test_calculate_bmi_underweight():
 
 # Here we will test if calculate_bmi can correctly
 # calculate a BMI that is Normal weight.
+
+
 def test_calculate_bmi_normal_weight():
     # For the given range [18.5, 25), we calculate the
     # following Weak N x 1 points...
@@ -112,6 +133,8 @@ def test_calculate_bmi_normal_weight():
 
 # Here we will test if calculate_bmi can correctly
 # calculate a BMI that is Overweight.
+
+
 def test_calculate_bmi_overweight():
     # For the given range [25, 30), we calculate the
     # following Weak N x 1 points...
@@ -128,6 +151,8 @@ def test_calculate_bmi_overweight():
 
 # Here we will test if calculate_bmi can correctly
 # calculate a BMI that is Obese.
+
+
 def test_calculate_bmi_obses():
     # For the given range [30, infinity), we calculate the
     # following Weak N x 1 points...
