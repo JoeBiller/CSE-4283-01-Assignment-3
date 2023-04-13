@@ -52,6 +52,7 @@
 {% if error_message %}
 <p id="error">{{error_message}}</p>
 {% endif %}
+<p>
 <form action="/" method="post">
     <label for="height">Enter your height:</label><br>
     <input id="number" type="text" name="feet" value="{{ last["feet"] }}" size="1"><span id="unit">'</span>
@@ -61,5 +62,6 @@
     <input id="number" type="text" name="pounds" value="{{ last["pounds"] }}" size="3"><span id="unit">lbs</span><br><br>
     <input type="submit" value="Calculate">
 </form>
+</p>
 </body>
 </html>
