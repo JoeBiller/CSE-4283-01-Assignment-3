@@ -17,10 +17,10 @@ jobs:
           command: . venv/bin/activate
       - run:
           name: Install Python Dependencies
-          command: pip3 install --upgrade -r requirements.txt
+          command: python3 -m pip install --upgrade -r requirements.txt
       - run:
           name: Run Unit Testing
-          command: pytest
+          command: pytest --cov
       - coveralls/upload
 
 workflows:
