@@ -20,4 +20,9 @@ orbs:
             command: pytest
             name: Run Unit Testing
         - coveralls/upload
+    workflows:
+      unit-tests-workflow:
+        jobs:
+          - unit-tests
+
 workflows: null
