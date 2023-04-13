@@ -20,7 +20,7 @@ jobs:
           command: python3 -m pip install --upgrade -r requirements.txt
       - run:
           name: Run Unit Testing
-          command: pytest --cov
+          command: python3 -m pytest --cov
       - coveralls/upload
 
 workflows:
