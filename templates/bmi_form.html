@@ -54,11 +54,11 @@
 {% endif %}
 <form action="/" method="post">
     <label for="height">Enter your height:</label><br>
-    <input id="number" type="text" name="feet" value="5" size="1"><span id="unit">'</span>
-    <input id="number" type="text" name="inch" value="9" size="2"><span id="unit">"</span>
+    <input id="number" type="text" name="feet" value="{{ last["feet"] }}" size="1"><span id="unit">'</span>
+    <input id="number" type="text" name="inch" value="{{ last["inch"] }}" size="2"><span id="unit">"</span>
     <br><br>
     <label for="weight">Enter your weight:</label><br>
-    <input id="number" type="text" name="pounds" value="140" size="3"><span id="unit">lbs</span><br><br>
+    <input id="number" type="text" name="pounds" value="{{ last["pounds"] }}" size="3"><span id="unit">lbs</span><br><br>
     <input type="submit" value="Calculate">
 </form>
 </body>

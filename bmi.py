@@ -9,7 +9,7 @@ def verify_measurement(measurement, name, floor):
         measurement = int(measurement)
         assert measurement >= floor
     except BaseException:
-        return measurement, f"Please enter a valid number in {name} above {floor}."
+        return measurement, f"Please enter a valid number in {name} above or equal to {floor}."
     return measurement, None
 
 # This function will convert a height in inches and
