@@ -21,7 +21,9 @@ orbs:
             command: pytest
         - coveralls/upload
 
-workflows:
-  unit-tests-workflow:
-    jobs:
-      - unit-tests
+  workflows:
+    unit-tests-workflow:
+      jobs:
+        - unit-tests
+
+workflows: null
